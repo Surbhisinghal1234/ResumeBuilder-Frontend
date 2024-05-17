@@ -62,7 +62,7 @@ function MyDetails() {
           />
         </div>
         <div className="flex gap-[4rem]">
-          <label htmlFor="">Name</label>
+          <label htmlFor="">Email</label>
           <input value={email} onChange={(e) => setEmail(e.target.value)}
             type="text"
             className=" border-2 border-gray-500 rounded-sm px-5"

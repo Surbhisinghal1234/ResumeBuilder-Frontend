@@ -1,13 +1,14 @@
-
-
-
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { inputContext } from "./Main";
+import UserProfile from "./UserProfile";
 
 function Resume() {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
   const { email, setEmail } = useContext(inputContext);
+  
 
   useEffect(() => {
     const userEmail = sessionStorage.getItem("userEmail");
@@ -15,23 +16,25 @@ function Resume() {
     if (userEmail) {
       const fetchUserDetails = async () => {
         try {
-          const response = await axios.get(`http://localhost:8000/userData?email=${userEmail}`);
+          const response = await axios.get(
+            `http://localhost:8000/userData?email=${userEmail}`
+          );
+         
           setUserData(response.data);
         } catch (error) {
-          console.error("Error fetching data:", error);
-        }   
+          console.error("Error", error);
+        }
       };
 
       fetchUserDetails();
     } else {
-      console.error("User email not found in sessionStorage");
+      console.error("email not found in session storage");
     }
   }, []);
 
-  if (!userData) return <div>Loading...</div>;
+  const { user, resumeProfile} = userData;
 
-  const { user, resumeProfile } = userData;
-
+// console.log(resumeProfile,"resumeProfile")
   return (
     <>
       <div className="border-b-2 border-gray-400">
@@ -43,7 +46,9 @@ function Resume() {
               </div>
               <div className="text-left ml-5">
                 <h3 className="font-medium text-xl text-gray-600">Resumes</h3>
-                <p className="font-medium text-xl text-gray-600">Management System</p>
+                <p className="font-medium text-xl text-gray-600">
+                  Management System
+                </p>
               </div>
             </div>
             <div>
@@ -53,11 +58,27 @@ function Resume() {
                 className="border-solid w-[16rem] border-gray-400 border-2 rounded-full px-3 py-2 outline-none"
               />
             </div>
+         {
+          resumeProfile ? (
+            <div>
+             <UserProfile blobUrl="blob:http://localhost:5173/3774e613-b479-433a-8d23-3d34c49d48ea" />
+              </div>
+          ):
+          (
+            <p>Image not found</p>
+          )
+         }
 
             {user ? (
               <div>
-                <p className="font-medium"> Name: <span className="font-normal">{user.name}</span></p>
-                <p className="font-medium"> Email: <span className="font-normal">{user.email}</span></p>
+                <p className="font-medium">
+                
+                  Name: <span className="font-normal">{user.name}</span>
+                </p>
+                <p className="font-medium">
+              
+                  Email: <span className="font-normal">{user.email}</span>
+                </p>
                 {/* <p className="font-medium"> Password: <span className="font-normal">{user.password}</span></p> */}
               </div>
             ) : (

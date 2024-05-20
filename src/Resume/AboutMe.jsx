@@ -1,8 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { inputContext } from "./Main";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function AboutMe() {
+  const { id } = useParams();
+
   const { message, setMessage, input, setInput } = useContext(inputContext);
   // const [input, setInput] = useState([""]);
 
@@ -17,6 +21,28 @@ function AboutMe() {
   }
 
   console.log(input);
+
+  // Edit data
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:8000/getById/${id}`);
+  //       const { resumeData } = response.data;
+
+  //       const { details, AboutMe, SkillsProficiencies, workExperience } =
+  //         resumeData;
+  //       const { name, email, role, totalExp } = details;
+  //       const { message, pointers, input } = AboutMe;
+  //       setMessage(message);
+  //       setInput(pointers || []);
+        
+  //     } catch (error) {
+  //       console.error("Error", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [id]);
   return (
     <div className="flex flex-col gap-[2rem]">
       <div className="form-group flex gap-[2rem]">
@@ -45,7 +71,7 @@ function AboutMe() {
                 className="border-gray-400 border-2 rounded px-3 py-1 w-[19rem]"
                 type="text"
                 placeholder="Write bullet points about you"
-                value={item.value}
+                value={item}
                 onChange={(e) => {
                   handleInput(index, e.target.value);
                 }}
@@ -53,7 +79,10 @@ function AboutMe() {
             </div>
           ))}
         </div>
-        <button onClick={handleAdd} className="absolute right-[6.5rem] top-[.2rem]">
+        <button
+          onClick={handleAdd}
+          className="absolute right-[6.5rem] top-[.2rem]"
+        >
           <AddCircleOutlineIcon />
         </button>
       </div>

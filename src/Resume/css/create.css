@@ -1,0 +1,6 @@
+.profile::-webkit-scrollbar {
+    display: none; /* This will hide the scroll bar */
+  }
+  .profile{
+    cursor: pointer;
+  }

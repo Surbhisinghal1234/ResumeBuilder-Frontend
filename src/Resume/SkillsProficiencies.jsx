@@ -1,8 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { inputContext } from './Main';
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function SkillsProficiencies() {
+  const { id } = useParams();
+
 
   const {skillProficiencies, setSkillProficiencies} = useContext(inputContext)
   const handleAddSkills = () => {
@@ -15,7 +19,7 @@ function SkillsProficiencies() {
     newSkills[index][inputIndex] = value;
     setSkillProficiencies(newSkills);
   };
-
+ 
   return (
     <>
       <div className=" flex flex-col justify-center items-center relative">
@@ -32,14 +36,14 @@ function SkillsProficiencies() {
               <input
                 className="border-2 border-gray-500 border-r-transparent border-t-transparent px-2 py-1 outline-none w-[12.4rem] font-medium "
                 type="text"
-                value={inputs[0].value} 
+                value={inputs[0]} 
                 onChange={(e) => handleChange(index,0, e.target.value)}
                 placeholder=""
               />
               <input
                 className="outline-none border-2 border-t-transparent border-gray-500 px-2 py-1 w-[12.67rem]"
                 type="text"
-                value={inputs[1].value} 
+                value={inputs[1]} 
                 onChange={(e) => handleChange(index,1, e.target.value)}
                 placeholder=""
               />

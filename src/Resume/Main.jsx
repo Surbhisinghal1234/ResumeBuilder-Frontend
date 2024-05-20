@@ -1,5 +1,4 @@
 import React, { createContext, useState, useContext } from "react";
-// import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Resume from "./Resume";
 import Create from "./Create";
 import Builder from "./Builder";
@@ -14,6 +13,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./resume.css";
 import LoginPage from "./LoginPage";
 import Registration  from "./Registration"
+import UserProfile from "./UserProfile";
 export const inputContext = createContext();
 
 function Main() {
@@ -52,7 +52,7 @@ function Main() {
     email:"",
     password:""
   })
-  console.log(compareLoginUser, "main");
+  // console.log(compareLoginUser, "main");
 
   const router = createBrowserRouter([
     {
@@ -85,13 +85,24 @@ function Main() {
       path: "/new-resume",
       element: <NewResume />,
       children: [
-        { path: "", element: <SelectSection /> },
+        { path: "", element: <SelectSection/> },
+        
+          
+        {
+          path:"my-details/:id",
+          element: <MyDetails/>
+        },
         {
           path:"my-details",
           element: <MyDetails/>
         },
+         
         {
           path: "about-me",
+          element: <AboutMe />,
+        },
+        {
+          path: "about-me/:id",
           element: <AboutMe />,
         },
         {
@@ -99,7 +110,15 @@ function Main() {
           element: <SkillsProficiencies />,
         },
         {
+          path: "skills-and-proficiencies/:id",
+          element: <SkillsProficiencies />,
+        },
+        {
           path: "work-experiences",
+          element: <WorkExperiences />,
+        },
+        {
+          path: "work-experiences/:id",
           element: <WorkExperiences />,
         },
       ],

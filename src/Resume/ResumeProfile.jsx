@@ -100,14 +100,13 @@ function ResumeProfile() {
             <p className="min-h-[5rem] max-h-auto w-[12.5rem] mt-3">
               {message}
             </p>
-            <ul className="flex flex-wrap list-disc mt-2">
+            <ul className="flex flex-wrap list-disc mt-2 mr-[.5rem] ">
               {input?.map((item, index) => {
-                // console.log(index)
                 if (item !== "") {
                   return (
                     <li
                       key={index}
-                      className="mr-2 w-[6rem] text-[1.1rem] font-medium"
+                      className="mr-2 w-[6rem] text-[1rem] font-medium"
                     >
                       {item}
                     </li>

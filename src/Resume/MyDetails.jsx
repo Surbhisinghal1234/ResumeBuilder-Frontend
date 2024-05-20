@@ -35,6 +35,7 @@ function MyDetails() {
       setImage(URL?.createObjectURL(photo));
     }
   }, [photo]);
+  
   const handleSave = () => {
     setEmail(email);
     setName(name);
@@ -56,13 +57,13 @@ function MyDetails() {
         <div className="flex gap-[2rem]">
           <label htmlFor="">Upload Photo</label>
           <input type="file" onChange={handleChangeImage} />
-          {image && (
+          {/* {image && (
             <img
               // type="image"
               className="w-[10rem] h-[10rem] "
               src={image}
             />
-          )}
+          )} */}
         </div>
 
         <div className="flex gap-[4rem]">

@@ -13,7 +13,6 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./resume.css";
 import LoginPage from "./LoginPage";
 import Registration  from "./Registration"
-import UserProfile from "./UserProfile";
 export const inputContext = createContext();
 
 function Main() {

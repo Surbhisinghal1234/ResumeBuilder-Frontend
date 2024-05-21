@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { inputContext } from "./Main";
-import UserProfile from "./UserProfile";
 
 function Resume() {
   const [userData, setUserData] = useState("");
@@ -58,16 +57,6 @@ function Resume() {
                 className="border-solid w-[16rem] border-gray-400 border-2 rounded-full px-3 py-2 outline-none"
               />
             </div>
-         {
-          resumeProfile ? (
-            <div>
-             <UserProfile blobUrl="blob:http://localhost:5173/3774e613-b479-433a-8d23-3d34c49d48ea" />
-              </div>
-          ):
-          (
-            <p>Image not found</p>
-          )
-         }
 
             {user ? (
               <div>

@@ -53,49 +53,74 @@ function Edit() {
     }
   }, [counter, id]);
 
-  const handleImageChange = (e) => {
-    if (e.target.files.length > 0) {
-      setImage( e.target.files[0]); 
-    }
+ 
+  const dataSave = {
+    details: {
+      email: email,
+      image: image,
+      name: name,
+      role: role,
+      totalExp: totalExp,
+    },
+    AboutMe: {
+      message: message,
+      pointers: input,
+    },
+    SkillsProficiencies: skillProficiencies,
+    workExperience: workExperience,
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8000/getById/${id}`)
+        const { resumeData } = response.data;
+        const { details, AboutMe, SkillsProficiencies, workExperience } =
+          resumeData;
+        const { image,name, email, role, totalExp } = details;
+        const { message, pointers } = AboutMe;
+        setName(name);
 
-    const formData = new FormData();
-
-    const dataToSave = {
-      details: {
-        email: email,
-        name: name,
-        role: role,
-        totalExp: totalExp,
-      },
-      AboutMe: {
-        message: message,
-        pointers: input,
-      },
-      SkillsProficiencies: skillProficiencies,
-      workExperience: workExperience,
+        setEmail(email);
+        setRole(role);
+        setTotalExp(totalExp);
+        setMessage(message);
+        setInput(pointers || []);
+        setSkillProficiencies(SkillsProficiencies || []);
+        setWorkExperience(workExperience || []);
+      } catch (error) {
+        console.error("Error", error);
+      }
     };
 
-    formData.append("dataToSave", JSON.stringify(dataToSave));
+    fetchData();
+  }, [id]);
 
-      formData.append("image", image);
-    console.log(formData);
+    
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const formData = new FormData();
+ 
+  const jsonDataSave = JSON.stringify(dataSave);
+ 
+  formData.append('dataSave', jsonDataSave);
+      formData.append("image", dataSave.details.image);
+ 
+  try {
+    const response = id 
+      ? await axios.put(`http://localhost:8000/update/${id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        })
+      : await axios.post("http://localhost:8000/send", formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+    console.log(response.data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 
-    try {
-      const response = await fetch("http://localhost:8000/send", {
-        method: "POST",
-        body: formData,
-      });
-      const result = await response.json();
-      console.log(result);
-    } catch (error) {
-      console.error("Error", error);
-    }
-  };
-
+    
   return (
     <>
       <div className="resumeSection w-1/2 px-[2rem]">
@@ -112,7 +137,7 @@ function Edit() {
             >
               Next <ArrowRightAltIcon />
             </Link>
-            <input type="file" onChange={handleImageChange} />
+            {/* <input type="file" onChange={handleImageChange} /> */}
             <button
               type="submit"
               className="bg-slate-600 hover:bg-slate-900 text-white font-bold px-6 py-[9px] rounded"

@@ -21,21 +21,15 @@ function MyDetails() {
   } = useContext(inputContext);
   // const [image, setImage] = useState("");
   //   const [editable, setEditable] = useState(true)
-  const [photo, setphoto] = useState();
+  const [photo, setphoto] = useState(null);
 
+ 
   function handleChangeImage(e) {
     if (e.target.files.length !== 0) {
-      setphoto(e?.target?.files[0]);
+      const selectedImage = e.target.files[0];
+      setImage(selectedImage); 
     }
   }
-
-  useEffect(() => {
-    if (photo) {
-      console.log("first");
-      setImage(URL?.createObjectURL(photo));
-    }
-  }, [photo]);
-  
   const handleSave = () => {
     setEmail(email);
     setName(name);
@@ -57,13 +51,14 @@ function MyDetails() {
         <div className="flex gap-[2rem]">
           <label htmlFor="">Upload Photo</label>
           <input type="file" onChange={handleChangeImage} />
-          {/* {image && (
+          
+           {image && (
             <img
-              // type="image"
-              className="w-[10rem] h-[10rem] "
-              src={image}
+              className="w-[10rem] h-[10rem]"
+              src={URL.createObjectURL(image)}
+              alt="Uploaded Preview"
             />
-          )} */}
+          )}
         </div>
 
         <div className="flex gap-[4rem]">

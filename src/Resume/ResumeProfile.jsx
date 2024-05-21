@@ -24,7 +24,7 @@ function ResumeProfile() {
 
   const technologyStack = workExperience?.technologyStack || [];
   const projectResponsibility = workExperience?.projectResponsibility || [];
-
+  const imageUrl = image ? URL.createObjectURL(image) : null;
   // console.log(
   //   name,
   //   role,
@@ -69,13 +69,9 @@ function ResumeProfile() {
 
       <div className="w-1/2 px-[2rem]">
         <div className="flex  items-center mt-[2rem] gap-[2rem] ">
-          <div>
-            <img
-              src={image}
-              alt=""
-              className=" h-[6rem] w-[6rem] border-2 border-slate-300 bg-slate-300 rounded-full"
-            />
-          </div>
+        <div>
+      {imageUrl && <img src={imageUrl} alt="Image"      className=" h-[6rem] w-[6rem] border-2 border-slate-300 bg-slate-300 rounded-full" />}
+    </div>
           <div className=" flex gap-[5px] flex-col font-medium">
             <h2>
               Name: <span className="pl-2 font-normal">{name}</span>{" "}

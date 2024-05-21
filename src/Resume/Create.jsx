@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import './css/create.css';
+import "./css/create.css";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { Link } from "react-router-dom";
 import { inputContext } from "./Main";
@@ -12,7 +12,7 @@ import WorkExperiences from "./WorkExperiences";
 function Create() {
   const { id } = useParams();
 
-  const { email} = useContext(inputContext);
+  const { email } = useContext(inputContext);
   const [resumeProfiles, setResumeProfiles] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
 
@@ -31,8 +31,8 @@ function Create() {
           `http://localhost:8000/userData?email=${userEmail}`
         );
         const { user, resumeProfiles } = response.data;
-        console.log(response,"35 create")
-        
+        console.log(response, "35 create");
+
         if (resumeProfiles && resumeProfiles.length > 0) {
           setResumeProfiles(resumeProfiles);
         } else {
@@ -77,8 +77,8 @@ function Create() {
     setSelectedItems([...selectedItems, id]);
   };
 
-  console.log(resumeProfiles,"create")
-  
+  console.log(resumeProfiles, "create");
+
   return (
     <div className="flex flex-col justify-center px-[4rem]">
       <div className=" flex mx-5">
@@ -106,38 +106,46 @@ function Create() {
                 className="flex flex-col gap-y-[.3rem] profile p-5 m-5 border-[.2rem] border-slate-400 rounded-lg h-[22rem] w-[19rem] overflow-scroll"
               >
                 <div className="flex justify-end gap-x-[.5rem] items-center  ">
+                  <input
+                    className="h-4 w-5"
+                    type="checkbox"
+                    checked={selectedItems.includes(profile._id)}
+                    onChange={() => handleCheckbox(profile._id)}
+                  />
 
-                <input className="h-4 w-5"
-                  type="checkbox"
-                  checked={selectedItems.includes(profile._id)}
-                  onChange={() => handleCheckbox(profile._id)}
-                />
-
-                <DeleteIcon
-                  onClick={() => handleDelete(profile._id)}
-                  className="cursor-pointer"
-                />
-                {/* <Link to={`/new-resume/${profile._id}`}>
+                  <DeleteIcon
+                    onClick={() => handleDelete(profile._id)}
+                    className="cursor-pointer"
+                  />
+                  {/* <Link to={`/new-resume/${profile._id}`}>
                   <EditIcon />
                 </Link> */}
-                 <Link to={`/new-resume/my-details/${profile._id}`}>
-                  <EditIcon />
-                </Link>
+                  <Link to={`/new-resume/my-details/${profile._id}`}>
+                    <EditIcon />
+                  </Link>
                 </div>
 
                 <p className="font-medium">
                   Name:
-                  <span className="font-normal pl-2">{profile.details.name}</span>
+                  <span className="font-normal pl-2">
+                    {profile.details.name}
+                  </span>
                 </p>
-               <p>
-                image 
-               <img src={profile.details.image} alt="image" />
-               </p>
-            
-             
+                <p>
+                  image
+                  {profile.details.image && (
+                    <img
+                      className="w-40 h-20"
+                      src={profile.details.image}
+                      alt=""
+                    />
+                  )}
+                </p>
                 <p className="font-medium">
                   Role:
-                  <span className="font-normal  pl-2">{profile.details.role}</span>
+                  <span className="font-normal  pl-2">
+                    {profile.details.role}
+                  </span>
                 </p>
                 <p className="font-medium">
                   Total Experience:
@@ -147,7 +155,17 @@ function Create() {
                 </p>
                 <p className="font-medium">
                   About Me:
-                  <span className="font-normal  pl-2">{profile.AboutMe.message}</span>
+                  <span className="font-normal  pl-2">
+                    {profile.AboutMe.message}
+                  </span>
+                </p>
+                <p className="font-medium">
+                  Pointers:
+                  <span className="font-normal  pl-2">
+                    {Array.isArray(profile.AboutMe.pointers)
+                      ? profile.AboutMe.pointers.join(", ")
+                      : profile.AboutMe.pointers}
+                  </span>
                 </p>
                 <p className="font-medium">
                   Skills:
@@ -158,7 +176,10 @@ function Create() {
                 <div className="font-medium ">
                   Work Experience:
                   {profile.workExperience.map((exp, idx) => (
-                    <div key={idx} className="font-normal flex flex-col  gap-y-[.3rem]">
+                    <div
+                      key={idx}
+                      className="font-normal flex flex-col  gap-y-[.3rem]"
+                    >
                       <p className="font-medium">
                         Client Description:
                         <span className="font-normal  pl-2">
@@ -171,19 +192,27 @@ function Create() {
                       </p>
                       <p className="font-medium">
                         Project Name:
-                        <span className="font-normal  pl-2">{exp.projectName}</span>
+                        <span className="font-normal  pl-2">
+                          {exp.projectName}
+                        </span>
                       </p>
                       <p className="font-medium">
                         Role:
-                        <span className="font-normal  pl-2">{exp.roleWork}</span>
+                        <span className="font-normal  pl-2">
+                          {exp.roleWork}
+                        </span>
                       </p>
                       <p className="font-medium">
                         Start Date:
-                        <span className="font-normal  pl-2">{exp.startDate}</span>
+                        <span className="font-normal  pl-2">
+                          {exp.startDate}
+                        </span>
                       </p>
                       <p className="font-medium">
                         End Date:
-                        <span className="font-normal  pl-2">{exp.endDate}</span>{" "}
+                        <span className="font-normal  pl-2">
+                          {exp.endDate}
+                        </span>{" "}
                       </p>
                       <p className="font-medium">
                         Business Solution:
@@ -202,7 +231,10 @@ function Create() {
                         <ul>
                           {exp.projectResponsibility.map(
                             (responsibility, idx) => (
-                              <li className="pl-2 font-normal" key={idx}> {responsibility}</li>
+                              <li className="pl-2 font-normal" key={idx}>
+                                {" "}
+                                {responsibility}
+                              </li>
                             )
                           )}
                         </ul>
@@ -222,7 +254,3 @@ function Create() {
 }
 
 export default Create;
-
-
-
-

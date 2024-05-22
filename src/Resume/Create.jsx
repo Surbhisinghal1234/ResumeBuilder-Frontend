@@ -22,7 +22,7 @@ function Create() {
         const userEmail = sessionStorage.getItem("userEmail");
 
         if (!userEmail) {
-          console.error("User email not found in session storage");
+          console.error("email not found in session storage");
           setResumeProfiles([]);
           return;
         }
@@ -32,6 +32,7 @@ function Create() {
         );
         const { user, resumeProfiles } = response.data;
         console.log(response, "35 create");
+       
 
         if (resumeProfiles && resumeProfiles.length > 0) {
           setResumeProfiles(resumeProfiles);
@@ -76,14 +77,18 @@ function Create() {
   const handleCheckbox = (id) => {
     setSelectedItems([...selectedItems, id]);
   };
+  // const { user, resumeProfiles } = response.data;
 
+
+ 
+  // let images = resumeProfiles.map(item => item.details.image);
   console.log(resumeProfiles, "create");
 
   return (
     <div className="flex flex-col justify-center px-[4rem]">
-      <div className=" flex mx-5">
+      <div className=" flex mx-5 items-center justify-center md:justify-normal">
         <Link to="/new-resume">
-          <div className="border-[3px] border-solid border-slate-600 inline-block px-5 py-4 rounded-xl mt-5 text-black">
+          <div className=" border-[3px] border-solid border-slate-600 inline-block px-5 py-4 rounded-xl mt-5 text-black">
             <h1 className="text-center">
               <AddCircleOutlineIcon />
             </h1>
@@ -92,12 +97,12 @@ function Create() {
         </Link>
       </div>
       <button
-        className="w-[5rem] mx-5 px-3 py-1 bg-slate-600 rounded text-white mt-5 inline-block"
+        className="mx-auto md:mx-5 w-[5rem]  px-3 py-1 bg-slate-600 rounded text-white mt-5 inline-block"
         onClick={handleCheckboxDelete}
       >
         Delete
       </button>
-      <div className="flex w-[100%] flex-wrap justify-between">
+      <div className="flex w-[100%] flex-col sm:flex-row justify-center items-center  sm:justify-start">
         {resumeProfiles.length > 0 ? (
           resumeProfiles.map((profile, index) => (
             <>
@@ -133,13 +138,7 @@ function Create() {
                 </p>
                 <p>
                   image
-                  {profile.details.image && (
-                    <img
-                      className="w-40 h-20"
-                      src={profile.details.image}
-                      alt=""
-                    />
-                  )}
+                 
                 </p>
                 <p className="font-medium">
                   Role:
@@ -226,7 +225,7 @@ function Create() {
                           {exp.technologyStack.join(", ")}
                         </span>
                       </p>
-                      <p className="font-medium flex">
+                      <div className="font-medium flex">
                         Responsibilities:
                         <ul>
                           {exp.projectResponsibility.map(
@@ -238,7 +237,7 @@ function Create() {
                             )
                           )}
                         </ul>
-                      </p>
+                      </div>
                     </div>
                   ))}
                 </div>

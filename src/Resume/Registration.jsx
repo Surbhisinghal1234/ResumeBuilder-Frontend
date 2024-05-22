@@ -13,6 +13,8 @@ function Registration() {
     setUser((prevUser) => ({ ...prevUser, [key]: value }));
   }
 
+  
+
   function handleSubmitRegister(e) {
     e.preventDefault();
 
@@ -33,11 +35,11 @@ function Registration() {
         }
         return response.json();
       })
-      // .then((response) => response.json())
       .then((result) => {
         console.log(result);
         setRegistrationMessage("Registration successful");
         setErrorMessage("");
+        window.location.href = "/";
       })                        
       .catch((error) => {
         console.error("Registration error", error.message);
@@ -113,13 +115,13 @@ function Registration() {
                   {registrationMessage}
                 </p>
               )}
-              {registrationMessage && (
+              {/* {registrationMessage && (
                 <NavLink to="/login">
                   <button className="font-sm text-xl bg-white  px-6 py-1 rounded-full">
                     Next
                   </button>
                 </NavLink>
-              )}
+              )} */}
             </div>
           </div>
           <div className="registration-image w-full h-full md:flex flex-col items-center justify-center gap-y-[1.5rem] bg-gradient-to-b from-yellow-100 to-red-100">

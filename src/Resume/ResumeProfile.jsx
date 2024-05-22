@@ -67,7 +67,7 @@ function ResumeProfile() {
       {/* <div method="post"> */}
       <div className="border-l border-gray-400 "></div>
 
-      <div className="w-1/2 px-[2rem]">
+      <div className="w-full md:w-1/2 px-[2rem]">
         <div className="flex  items-center mt-[2rem] gap-[2rem] ">
         <div>
       {imageUrl && <img src={imageUrl} alt="Image"      className=" h-[6rem] w-[6rem] border-2 border-slate-300 bg-slate-300 rounded-full" />}
@@ -87,13 +87,13 @@ function ResumeProfile() {
             </p>
           </div>
         </div>
-        <div className="flex gap-[2rem] mt-8">
+        <div className="flex flex-col md:flex-row items-center md:items-stretch md:gap-[2rem] mt-8">
           <div className="">
             <h1 className="text-[1.3rem] font-bold mb-1">ABOUT ME</h1>
-            <div className="bg-blue-200 w-[200px] h-[3px]">
-              <div className="bg-blue-600 w-[50px] h-[3px]"></div>
+            <div className="bg-blue-200 w-full  md:w-[10rem] h-[3px]">
+              <div className="bg-blue-600 w-[5rem] md:w-[50px] h-[3px]"></div>
             </div>
-            <p className="min-h-[5rem] max-h-auto w-[12.5rem] mt-3">
+            <p className="min-h-[5rem] max-h-auto w-full md:w-[12.5rem] mt-3">
               {message}
             </p>
             <ul className="flex flex-wrap list-disc mt-2 mr-[.5rem] ">
@@ -207,7 +207,7 @@ function ResumeProfile() {
           </div>
         </div>
 
-        <div className="mt-5">
+        <div className="mt-5 flex flex-col items-center md:items-stretch">
           <h1 className="text-[1.3rem] font-bold mb-1">
             SKILL & PROFICIENCIES
           </h1>
@@ -229,7 +229,7 @@ function ResumeProfile() {
           </div>
 
         </div>
-        <div className="flex gap-[2rem]">
+        <div className="flex items-center md:items-stretch flex-col md:flex-row gap-[2rem]">
           <div className="">
             <h1 className="text-[1.3rem] font-bold mb-1">CERTIFICATION</h1>
             <div className="bg-blue-200 w-[200px] h-[3px]">

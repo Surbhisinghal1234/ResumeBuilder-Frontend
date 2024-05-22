@@ -36,10 +36,10 @@ function Resume() {
 // console.log(resumeProfile,"resumeProfile")
   return (
     <>
-      <div className="border-b-2 border-gray-400">
+      <div className="border-b-2 border-gray-400 ">
         <div className="container mx-auto w-[90%] py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center justify-center gap-[2rem]">
+          <div className=" w-[100%] flex flex-col md:flex-row gap-[1.5rem] md:gap-0 items-center justify-between">
+            <div className="w-[100%] flex items-center justify-evenly md:justify-start md:gap-[2rem]">
               <div>
                 <h1 className="text-[2.4rem] font-bold">LOGO</h1>
               </div>
@@ -50,6 +50,9 @@ function Resume() {
                 </p>
               </div>
             </div>
+            <div className="w-[100%] flex flex-col gap-y-[1rem] sm:gap-y-0 sm:flex-row items-center justify-evenly md:justify-end md:gap-x-[2rem]">
+
+           
             <div>
               <input
                 type="text"
@@ -73,6 +76,7 @@ function Resume() {
             ) : (
               <p>User not found</p>
             )}
+             </div>
           </div>
         </div>
       </div>

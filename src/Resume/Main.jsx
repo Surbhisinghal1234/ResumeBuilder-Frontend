@@ -55,7 +55,7 @@ function Main() {
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/register",
       element: (
      
           <Registration />
@@ -63,7 +63,7 @@ function Main() {
       ),
     },
     {
-      path: "/login",
+      path: "/",
       element: (
         <>
           <LoginPage />

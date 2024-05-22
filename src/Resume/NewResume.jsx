@@ -11,9 +11,9 @@ function NewResume() {
   return (
     <>
      
-        <div className="flex w-[100%] ">
+        <div className="flex w-[100%] flex-col md:flex-row ">
           <Builder />
-          <section className="flex w-full">
+          <section className="flex flex-col md:flex-row w-full">
             <Edit />
             <ResumeProfile />
             {/* <Outlet/> */}

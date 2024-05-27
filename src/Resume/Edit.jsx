@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
@@ -53,7 +52,6 @@ function Edit() {
     }
   }, [counter, id]);
 
- 
   const dataSave = {
     details: {
       email: email,
@@ -70,14 +68,14 @@ function Edit() {
     workExperience: workExperience,
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/getById/${id}`)
+        const response = await axios.get(`http://localhost:8000/getById/${id}`);
         const { resumeData } = response.data;
         const { details, AboutMe, SkillsProficiencies, workExperience } =
           resumeData;
-        const { image,name, email, role, totalExp } = details;
+        const { image, name, email, role, totalExp } = details;
         const { message, pointers } = AboutMe;
         setName(name);
 
@@ -96,31 +94,28 @@ function Edit() {
     fetchData();
   }, [id]);
 
-    
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const formData = new FormData();
- 
-  const jsonDataSave = JSON.stringify(dataSave);
- 
-  formData.append('dataSave', jsonDataSave);
-      formData.append("image", dataSave.details.image);
- 
-  try {
-    const response = id 
-      ? await axios.put(`http://localhost:8000/update/${id}`, formData, {
-          headers: { "Content-Type": "multipart/form-data" }
-        })
-      : await axios.post("http://localhost:8000/send", formData, {
-          headers: { "Content-Type": "multipart/form-data" }
-        });
-    console.log(response.data);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    
+    const formData = new FormData();
+    const jsonDataSave = JSON.stringify(dataSave);
+    formData.append("dataSave", jsonDataSave);
+    formData.append("image", dataSave.details.image);
+
+    try {
+      const response = id
+        ? await axios.put(`http://localhost:8000/update/${id}`, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+        : await axios.post("http://localhost:8000/send", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <>
       <div className="resumeSection pb-8 md:pb-0 w-full md:w-1/2 px-[2rem] min-h-[15rem] bg-slate-200 md:bg-transparent border-y-2 border-slate-700 md:border-none">
@@ -153,5 +148,3 @@ const handleSubmit = async (e) => {
 }
 
 export default Edit;
-
-

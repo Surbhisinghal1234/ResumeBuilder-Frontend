@@ -10,7 +10,7 @@ function SkillsProficiencies() {
 
   const {skillProficiencies, setSkillProficiencies} = useContext(inputContext)
   const handleAddSkills = () => {
-    const newSkill = [", "]; 
+    const newSkill = [" "]; 
     const newSkills = [...skillProficiencies, newSkill]; 
     setSkillProficiencies(newSkills);
   };

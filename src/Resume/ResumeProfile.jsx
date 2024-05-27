@@ -220,7 +220,7 @@ function ResumeProfile() {
             if (inputs[0] !== "" && inputs[1] !== "") {
               return (
                 <div key={index} className="flex items-center mb-2 min-h-[3rem]">
-                  <p className="font-medium    mr-5">{inputs[0]} :</p>
+                  <p className="font-medium mr-5">{inputs[0]} </p>
                   <p className="  mr-5">{inputs[1]}</p>
                 </div>
               );

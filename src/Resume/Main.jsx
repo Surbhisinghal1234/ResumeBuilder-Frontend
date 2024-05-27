@@ -14,6 +14,8 @@ import "./resume.css";
 import LoginPage from "./LoginPage";
 import Registration  from "./Registration"
 export const inputContext = createContext();
+// import "./LoginPage.css";
+
 
 function Main() {
   const [email,setEmail]=useState("")
@@ -43,10 +45,7 @@ function Main() {
     projectResponsibility: [""],
   }]);
 
-  const [loginUser, setLoginUser] = useState({
-    email: "",
-    password: ""
-  })
+ 
   const [compareLoginUser,setCompareLoginUser]= useState({
     email:"",
     password:""
@@ -168,7 +167,7 @@ function Main() {
           setImage,
           input,
           setInput,
-          workExperience ,setWorkExperience,skillProficiencies, setSkillProficiencies,user, setUser,loginUser, setLoginUser
+          workExperience ,setWorkExperience,skillProficiencies, setSkillProficiencies,user, setUser
         }}
       >
         <RouterProvider router={router} />

@@ -14,40 +14,35 @@ function Registration() {
   }
 
   
-
   function handleSubmitRegister(e) {
     e.preventDefault();
-
+  
     if (user.password !== user.confirmPassword) {
       alert("Password and confirm password do not match");
       return;
     }
+  
     fetch("http://localhost:8000/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Email already exist");
+      .then(async (response) => {
+        const data = await response.json();
+        if (response.ok) {
+          setRegistrationMessage("Registration successful");
+          setErrorMessage("");
+          window.location.href = "/";
+        } else {
+          setErrorMessage(data.message || "Registration failed");
+          setRegistrationMessage("");
         }
-        return response.json();
       })
-      .then((result) => {
-        console.log(result);
-        setRegistrationMessage("Registration successful");
-        setErrorMessage("");
-        window.location.href = "/";
-      })                        
-      .catch((error) => {
-        console.error("Registration error", error.message);
-        setErrorMessage(error.message);
+      .catch(() => {
+        setErrorMessage("error");
         setRegistrationMessage("");
       });
   }
-
   return (
     <>
       <div className="bg-img-registration flex items-center justify-center  w-full h-screen ">

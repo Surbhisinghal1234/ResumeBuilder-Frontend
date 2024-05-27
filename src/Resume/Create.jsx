@@ -75,16 +75,28 @@ function Create() {
   };
 
   const handleCheckbox = (id) => {
-    setSelectedItems([...selectedItems, id]);
+    setSelectedItems((prevItem) => {
+      if (prevItem.includes(id)) {
+        return prevItem.filter((item) => item !== id);
+      } else {
+        return [...prevItem, id];
+      }
+    });
   };
   // const { user, resumeProfiles } = response.data;
-
-
  
   // let images = resumeProfiles.map(item => item.details.image);
-  console.log(resumeProfiles, "create");
 
+  console.log(resumeProfiles, "create");
+  const changeaddUrl = (url, oldPort, newPort) => {
+    if (!url) return "";
+    let newUrl = url.replace(`:${oldPort}`, `:${newPort}`);
+    newUrl = newUrl.replace(/\\/g, '/'); 
+    console.log(`Old URL: ${url}, New URL: ${newUrl}`);
+    return newUrl;
+  };
   return (
+  
     <div className="flex flex-col justify-center px-[4rem]">
       <div className=" flex mx-5 items-center justify-center md:justify-normal">
         <Link to="/new-resume">
@@ -102,6 +114,7 @@ function Create() {
       >
         Delete
       </button>
+      <img src="http://localhost:8000/resumeBuilder/image-1716456880356-Screenshot%20(7).png" alt="image" />
       <div className="flex w-[100%] flex-col sm:flex-row justify-center items-center  sm:justify-start">
         {resumeProfiles.length > 0 ? (
           resumeProfiles.map((profile, index) => (
@@ -136,10 +149,16 @@ function Create() {
                     {profile.details.name}
                   </span>
                 </p>
-                <p>
-                  image
-                 
-                </p>
+                <p className="font-medium">
+                Image:
+                {profile.details.image && (
+                  <img
+                    src={changeUrl(profile.details.image, 5173, 8000)}
+                    alt=""
+                   
+                  />
+                )}
+              </p>
                 <p className="font-medium">
                   Role:
                   <span className="font-normal  pl-2">
@@ -211,7 +230,7 @@ function Create() {
                         End Date:
                         <span className="font-normal  pl-2">
                           {exp.endDate}
-                        </span>{" "}
+                        </span>
                       </p>
                       <p className="font-medium">
                         Business Solution:
@@ -231,7 +250,7 @@ function Create() {
                           {exp.projectResponsibility.map(
                             (responsibility, idx) => (
                               <li className="pl-2 font-normal" key={idx}>
-                                {" "}
+                               
                                 {responsibility}
                               </li>
                             )

@@ -74,16 +74,16 @@ function ResumeProfile() {
     </div>
           <div className=" flex gap-[5px] flex-col font-medium">
             <h2>
-              Name: <span className="pl-2 font-normal">{name}</span>{" "}
+              Name: <span className="pl-2 font-normal">{name}</span>
             </h2>
             <h2>
-              Email: <span className="pl-2 font-normal">{email}</span>{" "}
+              Email: <span className="pl-2 font-normal">{email}</span>
             </h2>
             <p>
-              Role: <span className="pl-2 font-normal">{role}</span>{" "}
+              Role: <span className="pl-2 font-normal">{role}</span>
             </p>
             <p>
-              Total Exp: <span className="pl-2 font-normal">{totalExp}</span>{" "}
+              Total Exp: <span className="pl-2 font-normal">{totalExp}</span>
             </p>
           </div>
         </div>

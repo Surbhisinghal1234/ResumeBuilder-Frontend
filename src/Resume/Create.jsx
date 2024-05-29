@@ -88,13 +88,7 @@ function Create() {
   // let images = resumeProfiles.map(item => item.details.image);
 
   console.log(resumeProfiles, "create");
-  const changeaddUrl = (url, oldPort, newPort) => {
-    if (!url) return "";
-    let newUrl = url.replace(`:${oldPort}`, `:${newPort}`);
-    newUrl = newUrl.replace(/\\/g, '/'); 
-    console.log(`Old URL: ${url}, New URL: ${newUrl}`);
-    return newUrl;
-  };
+ 
   return (
   
     <div className="flex flex-col justify-center px-[4rem]">
@@ -153,7 +147,7 @@ function Create() {
                 Image:
                 {profile.details.image && (
                   <img
-                    src={changeUrl(profile.details.image, 5173, 8000)}
+                    src={profile.details.image}
                     alt=""
                    
                   />

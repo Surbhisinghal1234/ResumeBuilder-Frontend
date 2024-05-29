@@ -1,6 +1,6 @@
 
 import React, { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 import "./LoginPhe.css";
 import { inputContext } from "./Main";
 
@@ -109,6 +109,11 @@ function LoginPage() {
                 <button type="submit" className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium">
                   Log In
                 </button>
+                <Link to="/register">
+                <button type="submit" className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium">
+                  Register
+                </button>
+                </Link>
               </form>
               {loginStatus && (
                 <p className={`font-bold text-2xl ${loginStatus === "Login successful!" ? "text-green-800" : "text-red-500"}`}>

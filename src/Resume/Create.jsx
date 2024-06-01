@@ -8,6 +8,9 @@ import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import WorkExperiences from "./WorkExperiences";
+import CreatePDF from "./CreatePDF";
+// import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
 
 function Create() {
   const { id } = useParams();
@@ -26,13 +29,11 @@ function Create() {
           setResumeProfiles([]);
           return;
         }
-
         const response = await axios.get(
           `http://localhost:8000/userData?email=${userEmail}`
         );
         const { user, resumeProfiles } = response.data;
         console.log(response, "35 create");
-       
 
         if (resumeProfiles && resumeProfiles.length > 0) {
           setResumeProfiles(resumeProfiles);
@@ -44,7 +45,6 @@ function Create() {
         setResumeProfiles([]);
       }
     };
-
     fetchUserDetails();
   }, []);
 
@@ -84,13 +84,12 @@ function Create() {
     });
   };
   // const { user, resumeProfiles } = response.data;
- 
+
   // let images = resumeProfiles.map(item => item.details.image);
 
   console.log(resumeProfiles, "create");
- 
+
   return (
-  
     <div className="flex flex-col justify-center px-[4rem]">
       <div className=" flex mx-5 items-center justify-center md:justify-normal">
         <Link to="/new-resume">
@@ -102,14 +101,16 @@ function Create() {
           </div>
         </Link>
       </div>
-      <button
-        className="mx-auto md:mx-5 w-[5rem]  px-3 py-1 bg-slate-600 rounded text-white mt-5 inline-block"
-        onClick={handleCheckboxDelete}
-      >
-        Delete
-      </button>
-      <img src="http://localhost:8000/resumeBuilder/image-1716456880356-Screenshot%20(7).png" alt="image" />
-      <div className="flex w-[100%] flex-col sm:flex-row justify-center items-center  sm:justify-start">
+
+      {resumeProfiles.length > 0 && (
+        <button
+          className="mx-auto md:mx-5 w-[5rem] px-3 py-1 bg-slate-600 rounded text-white mt-5 inline-block"
+          onClick={handleCheckboxDelete}
+        >
+          Delete
+        </button>
+      )}
+      <div className=" w-[100%] flex flex-wrap flex-col sm:flex-row justify-center items-center  sm:justify-start">
         {resumeProfiles.length > 0 ? (
           resumeProfiles.map((profile, index) => (
             <>
@@ -135,6 +136,8 @@ function Create() {
                   <Link to={`/new-resume/my-details/${profile._id}`}>
                     <EditIcon />
                   </Link>
+
+                  <FileDownloadIcon onClick={() => CreatePDF(profile)} />
                 </div>
 
                 <p className="font-medium">
@@ -143,16 +146,16 @@ function Create() {
                     {profile.details.name}
                   </span>
                 </p>
-                <p className="font-medium">
-                Image:
-                {profile.details.image && (
-                  <img
-                    src={profile.details.image}
-                    alt=""
-                   
+               
+                <p className="flex gap-x-[2rem]">
+                  Image:
+                  <img class="h-[2rem] w-[3rem] rounded-md"
+
+                    src={`http://localhost:8000/${profile.details.image}`}
+                    alt="Profile"
                   />
-                )}
-              </p>
+                </p>
+
                 <p className="font-medium">
                   Role:
                   <span className="font-normal  pl-2">
@@ -171,12 +174,11 @@ function Create() {
                     {profile.AboutMe.message}
                   </span>
                 </p>
+               
                 <p className="font-medium">
                   Pointers:
                   <span className="font-normal  pl-2">
-                    {Array.isArray(profile.AboutMe.pointers)
-                      ? profile.AboutMe.pointers.join(", ")
-                      : profile.AboutMe.pointers}
+                    {profile.AboutMe.pointers.join(", ")}
                   </span>
                 </p>
                 <p className="font-medium">
@@ -222,9 +224,7 @@ function Create() {
                       </p>
                       <p className="font-medium">
                         End Date:
-                        <span className="font-normal  pl-2">
-                          {exp.endDate}
-                        </span>
+                        <span className="font-normal  pl-2">{exp.endDate}</span>
                       </p>
                       <p className="font-medium">
                         Business Solution:
@@ -238,19 +238,14 @@ function Create() {
                           {exp.technologyStack.join(", ")}
                         </span>
                       </p>
-                      <div className="font-medium flex">
+
+                      <p className="font-medium">
                         Responsibilities:
-                        <ul>
-                          {exp.projectResponsibility.map(
-                            (responsibility, idx) => (
-                              <li className="pl-2 font-normal" key={idx}>
-                               
-                                {responsibility}
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </div>
+                        <span className="font-normal  pl-2">
+                          {exp.projectResponsibility.join(", ")}
+                        </span>
+                      </p>
+                      
                     </div>
                   ))}
                 </div>
@@ -264,5 +259,4 @@ function Create() {
     </div>
   );
 }
-
 export default Create;

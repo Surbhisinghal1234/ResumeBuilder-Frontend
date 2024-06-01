@@ -100,7 +100,13 @@ function Edit() {
     const formData = new FormData();
     const jsonDataSave = JSON.stringify(dataSave);
     formData.append("dataSave", jsonDataSave);
-    formData.append("image", dataSave.details.image);
+    // formData.append("image",image);
+    if (dataSave.details.image) {
+      formData.append("image", dataSave.details.image);
+    } else {
+      console.warn("Image is not available");
+    }
+   
 
     try {
       const response = id
@@ -133,12 +139,15 @@ function Edit() {
               Next <ArrowRightAltIcon />
             </Link>
             {/* <input type="file" onChange={handleImageChange} /> */}
-            <button
+         {/* <Link to="/create"
+         > */}
+          <button
               type="submit"
               className="bg-slate-600 hover:bg-slate-900 text-white font-bold px-6 py-[9px] rounded"
             >
               Submit
             </button>
+            {/* </Link>    */}
           </div>
         </form>
         <Outlet />

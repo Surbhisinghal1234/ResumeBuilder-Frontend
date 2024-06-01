@@ -51,6 +51,7 @@ function LoginPage() {
         if (data.message === "Login successful") {
           setLoginStatus("Login successful!");
           sessionStorage.setItem("userEmail", loginUser.email);
+          
           window.location.href = "/create";
         } else {
           setLoginStatus(data.message);

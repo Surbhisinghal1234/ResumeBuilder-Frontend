@@ -5,10 +5,8 @@ import { inputContext } from "./Main";
 function Resume() {
   const [userData, setUserData] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-
   const { email, setEmail } = useContext(inputContext);
   
-
   useEffect(() => {
     const userEmail = sessionStorage.getItem("userEmail");
 
@@ -33,6 +31,15 @@ function Resume() {
 
   const { user, resumeProfile} = userData;
 
+  useEffect(()=>{
+
+  },[])
+
+  function handleLogout(){
+    sessionStorage.clear("userEmail")
+    window.location.href = "/"
+  }
+
 // console.log(resumeProfile,"resumeProfile")
   return (
     <>
@@ -52,7 +59,6 @@ function Resume() {
             </div>
             <div className="w-[100%] flex flex-col gap-y-[1rem] sm:gap-y-0 sm:flex-row items-center justify-evenly md:justify-end md:gap-x-[2rem]">
 
-           
             <div>
               <input
                 type="text"
@@ -62,6 +68,7 @@ function Resume() {
             </div>
 
             {user ? (
+              <>
               <div>
                 <p className="font-medium">
                 
@@ -73,46 +80,18 @@ function Resume() {
                 </p>
                 {/* <p className="font-medium"> Password: <span className="font-normal">{user.password}</span></p> */}
               </div>
+                <div>
+                <button onClick={handleLogout} className="bg-red-600 rounded-md px-4 py-2 text-white ">Logout</button>
+              </div>
+              </>
+
             ) : (
               <p>User not found</p>
             )}
              </div>
-          </div>
+          </div> 
         </div>
       </div>
-      {/* <div className="m-5 p-5 h-auto w-[23rem] border-[.2rem] border-slate-400 rounded-lg">
-      {resumeProfile ? (
-        <div>
-          <p className="font-medium"> Name: <span className="font-normal">{resumeProfile.details.name}</span></p>
-          <p className="font-medium"> Role: <span className="font-normal">{resumeProfile.details.role}</span></p>
-          <p className="font-medium">Total Experience: <span className="font-normal">{resumeProfile.details.totalExp}</span></p>
-          <p className="font-medium">About Me: <span className="font-normal">{resumeProfile.AboutMe.message}</span></p>
-          <p className="font-medium">Skills: <span className="font-normal">{resumeProfile.SkillsProficiencies.join(', ')}</span></p>
-          <div className="font-medium">Work Experience:
-            {resumeProfile.workExperience.map((exp, index) => (
-              <div key={index} className="font-normal">
-                <p>Client Description: {exp.clientDescription}</p>
-                <p>Country: {exp.country}</p>
-                <p>Project Name: {exp.projectName}</p>
-                <p>Role: {exp.roleWork}</p>
-                <p>Start Date: {exp.startDate}</p>
-                <p>End Date: {exp.endDate}</p>
-                <p>Business Solution: {exp.businessSolution}</p>
-                <p>Technology Stack: {exp.technologyStack.join(', ')}</p>
-                <p>Responsibilities:</p>
-                <ul>
-                  {exp.projectResponsibility.map((responsibility, idx) => (
-                    <li key={idx}>{responsibility}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <p>Resume profile not found</p>
-      )}
-      </div> */}
     </>
   );
 }

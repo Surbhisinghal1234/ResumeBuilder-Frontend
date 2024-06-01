@@ -1,36 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// import React, { useEffect, useState } from 'react';
+// import axios from 'axios';
 
-function UserProfile({ blobUrl }) {
-  const [imageUrl, setImageUrl] = useState(null);
+// function UserProfile({ blobUrl }) {
+//   const [imageUrl, setImageUrl] = useState(null);
 
-  useEffect(() => {
-    async function fetchBlobImage() {
-      try {
-        const response = await axios.get(blobUrl, { responseType: 'blob' });
-        const blob = response.data;
-        const objectUrl = URL.createObjectURL(blob);
-        setImageUrl(objectUrl);
-      } catch (error) {
-        console.error('Error fetching image:', error);
-      }
-    }
+//   useEffect(() => {
+//     async function fetchBlobImage() {
+//       try {
+//         const response = await axios.get(blobUrl, { responseType: 'blob' });
+//         const blob = response.data;
+//         const objectUrl = URL.createObjectURL(blob);
+//         setImageUrl(objectUrl);
+//       } catch (error) {
+//         console.error('Error fetching image:', error);
+//       }
+//     }
 
-    fetchBlobImage();
+//     fetchBlobImage();
 
-    // Cleanup function to revoke the object URL
-    return () => {
-      if (imageUrl) {
-        URL.revokeObjectURL(imageUrl);
-      }
-    };
-  }, [blobUrl]);
+   
+//     return () => {
+//       if (imageUrl) {
+//         URL.revokeObjectURL(imageUrl);
+//       }
+//     };
+//   }, [blobUrl]);
 
-  if (!imageUrl) {
-    return <div>Loading...</div>;
-  }
+//   if (!imageUrl) {
+//     return <div>Loading...</div>;
+//   }
 
-  return <img src={imageUrl} alt="Blob Image" />;
-}
+//   return <img src={imageUrl} alt="Blob Image" />;
+// }
 
-export default UserProfile;
+// export default UserProfile;

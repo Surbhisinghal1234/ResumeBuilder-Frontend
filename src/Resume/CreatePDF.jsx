@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 
-const CreatePDF = async (profile) => {
+async  function CreatePDF (profile) {
   const doc = new jsPDF();
   const margin = 10;
   let verticle = margin;

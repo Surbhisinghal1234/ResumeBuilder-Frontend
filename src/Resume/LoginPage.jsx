@@ -1,6 +1,5 @@
-
 import React, { useState, useContext } from "react";
-import { NavLink,Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./LoginPhe.css";
 import { inputContext } from "./Main";
 
@@ -10,8 +9,8 @@ import { inputContext } from "./Main";
 function LoginPage() {
   const [loginUser, setLoginUser] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
   // const {user,loginWithRedirect,isAuthenticated} = useAuth0();
   // console.log(user,"user")
   // const { user, setUser } = useContext(inputContext);
@@ -20,9 +19,9 @@ function LoginPage() {
   //   password: ""
   // })
   // const { loginUser, setLoginUser} = useContext(inputContext);
- 
+
   // const [password, setPassword] = useState("")
-  
+
   const [loginStatus, setLoginStatus] = useState("");
 
   function handleRegister(key, value) {
@@ -36,11 +35,12 @@ function LoginPage() {
       return;
     }
 
-    fetch("https://resumebuilder-backend-63tl.onrender.com/login", {
+    fetch("http://localhost:8000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({
         email: loginUser.email,
         password: loginUser.password,
@@ -50,8 +50,9 @@ function LoginPage() {
       .then((data) => {
         if (data.message === "Login successful") {
           setLoginStatus("Login successful!");
+         
           sessionStorage.setItem("userEmail", loginUser.email);
-          
+
           window.location.href = "/create";
         } else {
           setLoginStatus(data.message);
@@ -69,20 +70,30 @@ function LoginPage() {
         <div className="w-[65%] h-[75%] md:w-[80%] lg:w-[75%] xl:w-[65%] sm:h-[80%] rounded-xl overflow-hidden flex text-center justify-center items-center">
           <div className="border-black border-r-2 bg-slate-400 w-full h-full flex flex-col items-center justify-center gap-[1rem] sm:gap-y-[1.5rem]">
             <div className="h-[70%] flex flex-col justify-center items-center sm:justify-normal      gap-[1rem] sm:gap-[1.5rem]">
-              <h1 className="welcome font-bold text-white text-2xl">WELCOME USER</h1>
-              
-              <p  className="cursor-pointer  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  custom-shadow  bg-white px-2 py-1 flex items-center rounded font-bold">
-                <img src="./google.jpeg" className="w-[2rem] h-[2rem] mr-10" alt="" />
+              <h1 className="welcome font-bold text-white text-2xl">
+                WELCOME USER
+              </h1>
+
+              <p className="cursor-pointer  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  custom-shadow  bg-white px-2 py-1 flex items-center rounded font-bold">
+                <img
+                  src="./google.jpeg"
+                  className="w-[2rem] h-[2rem] mr-10"
+                  alt=""
+                />
                 Log in with Google
               </p>
-              
+
               <div className="flex items-center">
                 <p className="hidden sm:visible w-[5.1rem] h-[2px] bg-white"></p>
-                <p className="text-black text-sm font-medium px-1">OR LOGIN WITH EMAIL</p>
+                <p className="text-black text-sm font-medium px-1">
+                  OR LOGIN WITH EMAIL
+                </p>
                 <p className="hidden sm:visible w-[5.1rem] h-[2px] bg-white "></p>
               </div>
-              <form onSubmit={handleLogin} className="flex flex-col gap-[1rem] sm:gap-[1.55rem] justify-center items-center">
-
+              <form
+                onSubmit={handleLogin}
+                className="flex flex-col gap-[1rem] sm:gap-[1.55rem] justify-center items-center"
+              >
                 <input
                   type="text"
                   placeholder="Email"
@@ -93,7 +104,7 @@ function LoginPage() {
                   className="outline-none custom-shadow  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
                 />
                 <input
-                  type="password" 
+                  type="password"
                   value={loginUser.password}
                   onChange={(e) => {
                     handleRegister("password", e.target.value);
@@ -107,21 +118,32 @@ function LoginPage() {
                   </div>
                   <p>Forgot password</p>
                 </div>
-                <button type="submit" className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium">
+                <button
+                  type="submit"
+                  className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
+                >
                   Log In
                 </button>
                 <Link to="/register">
-                <button type="submit" className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium">
-                  Register
-                </button>
+                  <button
+                    type="submit"
+                    className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
+                  >
+                    Register
+                  </button>
                 </Link>
               </form>
               {loginStatus && (
-                <p className={`font-bold text-2xl ${loginStatus === "Login successful!" ? "text-green-800" : "text-red-500"}`}>
+                <p
+                  className={`font-bold text-2xl ${
+                    loginStatus === "Login successful!"
+                      ? "text-green-800"
+                      : "text-red-500"
+                  }`}
+                >
                   {loginStatus}
                 </p>
               )}
-             
             </div>
           </div>
           <div className="bg-right-img w-full h-full flex justify-center items-center">
@@ -138,5 +160,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-

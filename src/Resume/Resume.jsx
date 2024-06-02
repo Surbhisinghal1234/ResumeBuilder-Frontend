@@ -14,7 +14,7 @@ function Resume() {
       const fetchUserDetails = async () => {
         try {
           const response = await axios.get(
-            `https://resumebuilder-backend-63tl.onrender.com/userData?email=${userEmail}`
+            `http://localhost:8000/userData?email=${userEmail}`
           );
          
           setUserData(response.data);

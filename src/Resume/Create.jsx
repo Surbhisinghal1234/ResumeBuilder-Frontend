@@ -30,7 +30,7 @@ function Create() {
           return;
         }
         const response = await axios.get(
-          `https://resumebuilder-backend-63tl.onrender.com/userData?email=${userEmail}`
+          `http://localhost:8000/userData?email=${userEmail}`
         );
         const { user, resumeProfiles } = response.data;
         console.log(response, "35 create");
@@ -51,7 +51,7 @@ function Create() {
   const handleDelete = async (id) => {
     console.log("id:", id);
     try {
-      await axios.delete(`https://resumebuilder-backend-63tl.onrender.com/delete/${id}`);
+      await axios.delete(`http://localhost:8000/delete/${id}`);
       setResumeProfiles((prevProfiles) =>
         prevProfiles.filter((profile) => profile._id !== id)
       );
@@ -62,7 +62,7 @@ function Create() {
 
   const handleCheckboxDelete = async () => {
     try {
-      await axios.delete(`https://resumebuilder-backend-63tl.onrender.com/deleteMany`, {
+      await axios.delete(`http://localhost:8000/deleteMany`, {
         data: { ids: selectedItems },
       });
       setResumeProfiles((prevProfiles) =>
@@ -151,7 +151,7 @@ function Create() {
                   Image:
                   <img class="h-[2rem] w-[3rem] rounded-md"
 
-                    src={`https://resumebuilder-backend-63tl.onrender.com/${profile.details.image}`}
+                    src={`http://localhost:8000/${profile.details.image}`}
                     alt="Profile"
                   />
                 </p>

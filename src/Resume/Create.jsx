@@ -151,7 +151,7 @@ function Create() {
                   Image:
                   <img class="h-[2rem] w-[3rem] rounded-md"
 
-                    src={`http://localhost:8000/${profile.details.image}`}
+                    src={`https://resumebuilder-backend-1.onrender.com/${profile.details.image}`}
                     alt="Profile"
                   />
                 </p>

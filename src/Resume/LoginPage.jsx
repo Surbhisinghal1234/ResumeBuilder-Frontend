@@ -35,11 +35,12 @@ function LoginPage() {
       return;
     }
 
-    fetch("https://resumebuilder-backend-63tl.onrender.com/login", {
+    fetch("https://resumebuilder-backend-f4vp.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      // mode: "no-cors",
 
       body: JSON.stringify({
         email: loginUser.email,

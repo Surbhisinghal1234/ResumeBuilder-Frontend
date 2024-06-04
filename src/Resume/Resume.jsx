@@ -14,7 +14,7 @@ function Resume() {
       const fetchUserDetails = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8000/userData?email=${userEmail}`
+            `https://resumebuilder-backend-63tl.onrender.com/userData?email=${userEmail}`
           );
          
           setUserData(response.data);
@@ -35,10 +35,20 @@ function Resume() {
 
   },[])
 
-  function handleLogout(){
-    sessionStorage.clear("userEmail")
-    window.location.href = "/"
+  // function handleLogout(){
+  //   sessionStorage.clear("userEmail")
+  //   window.location.href = "/"
+  // }
+  async function handleLogout() {
+    try {
+      await axios.post("https://resumebuilder-backend-63tl.onrender.com/logout");
+      sessionStorage.clear("userEmail");
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   }
+
 
 // console.log(resumeProfile,"resumeProfile")
   return (

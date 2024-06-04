@@ -35,7 +35,7 @@ function LoginPage() {
       return;
     }
 
-    fetch("http://localhost:8000/login", {
+    fetch("https://resumebuilder-backend-63tl.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

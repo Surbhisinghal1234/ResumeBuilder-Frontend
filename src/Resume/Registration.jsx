@@ -22,7 +22,7 @@ function Registration() {
       return;
     }
   
-    fetch("http://localhost:8000/register", {
+    fetch("https://resumebuilder-backend-63tl.onrender.com/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),

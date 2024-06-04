@@ -71,7 +71,7 @@ function Edit() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://resumebuilder-backend-1.onrender.com/getById/${id}`);
+        const response = await axios.get(`https://resumebuilder-backend-ooq9.onrender.com/getById/${id}`);
         const { resumeData } = response.data;
         const { details, AboutMe, SkillsProficiencies, workExperience } =
           resumeData;
@@ -111,10 +111,10 @@ function Edit() {
 
     try {
       const response = id
-        ? await axios.put(`https://resumebuilder-backend-1.onrender.com/${id}`, formData, {
+        ? await axios.put(`https://resumebuilder-backend-ooq9.onrender.com/${id}`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
           })
-        : await axios.post("https://resumebuilder-backend-1.onrender.com/send", formData, {
+        : await axios.post("https://resumebuilder-backend-ooq9.onrender.com/send", formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
       console.log(response.data);

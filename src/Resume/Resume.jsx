@@ -14,7 +14,7 @@ function Resume() {
       const fetchUserDetails = async () => {
         try {
           const response = await axios.get(
-            `https://resumebuilder-backend-1.onrender.com/userData?email=${userEmail}`
+            `https://resumebuilder-backend-ooq9.onrender.com/userData?email=${userEmail}`
           );
          
           setUserData(response.data);
@@ -41,7 +41,7 @@ function Resume() {
   // }
   async function handleLogout() {
     try {
-      await axios.post("https://resumebuilder-backend-1.onrender.com/logout");
+      await axios.post("https://resumebuilder-backend-ooq9.onrender.com/logout");
       sessionStorage.clear("userEmail");
       window.location.href = "/";
     } catch (error) {

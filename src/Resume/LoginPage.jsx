@@ -35,7 +35,7 @@ function LoginPage() {
       return;
     }
 
-    fetch("https://resumebuilder-backend-1.onrender.com/api/login", {
+    fetch("https://resumebuilder-backend-1.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

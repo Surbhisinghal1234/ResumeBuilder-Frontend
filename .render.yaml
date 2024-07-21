@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: my-app
+    env: static
+    static:
+      directory: build
+      fallback: index.html

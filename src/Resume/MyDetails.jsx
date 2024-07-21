@@ -68,7 +68,7 @@ function MyDetails() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             type="text"
-            className="border-none py-[3px] md:py-0 md:border-2 md:border-gray-500 rounded-sm px-5"
+            className=" py-[3px] md:py-0 md:border-2 md:border-gray-500 rounded-sm px-5"
           />
         </div>
         <div className="flex gap-[4rem]">

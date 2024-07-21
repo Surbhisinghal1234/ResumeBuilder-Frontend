@@ -172,11 +172,6 @@ function Main() {
       >
         <RouterProvider router={router} />
 
-
-
-
-
-
       </inputContext.Provider>
     </>
   );

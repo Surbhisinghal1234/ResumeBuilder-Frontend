@@ -51,7 +51,7 @@ function Create() {
   const handleDelete = async (id) => {
     console.log("id:", id);
     try {
-      await axios.delete(`https://resumebuilder-backend-ooq9.onrender.com/delete/${id}`);
+      await axios.delete(`https://resumebuilder-backend-ooq9.onrender.com/${id}`);
       setResumeProfiles((prevProfiles) =>
         prevProfiles.filter((profile) => profile._id !== id)
       );
@@ -147,9 +147,9 @@ function Create() {
                   </span>
                 </p>
                
-                <p className="flex gap-x-[2rem]">
+                <p className="flex gap-x-[2rem] font-medium">
                   Image:
-                  <img class="h-[2rem] w-[3rem] rounded-md"
+                  <img class="h-[4rem] w-[6rem] rounded-md"
 
                     src={`https://resumebuilder-backend-ooq9.onrender.com/${profile.details.image}`}
                     alt="Profile"

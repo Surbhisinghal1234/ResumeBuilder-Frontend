@@ -71,14 +71,14 @@ function LoginPage() {
         <div className="w-[65%] h-[75%] md:w-[80%] lg:w-[75%] xl:w-[65%] sm:h-[80%] rounded-xl overflow-hidden flex text-center justify-center items-center">
           <div className="border-black border-r-2 bg-slate-400 w-full h-full flex flex-col items-center justify-center gap-[1rem] sm:gap-y-[1.5rem]">
             <div className="h-[70%] flex flex-col justify-center items-center sm:justify-normal      gap-[1rem] sm:gap-[1.5rem]">
-              <h1 className="welcome font-bold text-white text-2xl">
+              <h1 className="welcome font-bold text-white sm:text-2xl">
                 WELCOME USER
               </h1>
 
-              <p className="cursor-pointer  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  custom-shadow  bg-white px-2 py-1 flex items-center rounded font-bold">
+              <p className="cursor-pointer  w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  custom-shadow  bg-white px-2 py-1 flex items-center rounded sm:font-bold text-[.8rem] xs:text-[1rem] font-medium">
                 <img
                   src="./google.jpeg"
-                  className="w-[2rem] h-[2rem] mr-10"
+                  className="w-[2rem] h-[2rem] xs:mr-10"
                   alt=""
                 />
                 Log in with Google
@@ -102,7 +102,7 @@ function LoginPage() {
                   onChange={(e) => {
                     handleRegister("email", e.target.value);
                   }}
-                  className="outline-none custom-shadow  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
+                  className="outline-none custom-shadow  w-[10rem] xs:w-[15rem]  sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
                 />
                 <input
                   type="password"
@@ -111,7 +111,7 @@ function LoginPage() {
                     handleRegister("password", e.target.value);
                   }}
                   placeholder="Password"
-                  className="outline-none custom-shadow  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
+                  className="outline-none custom-shadow  w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
                 />
                 <div className="flex flex-col sm:flex-row justify-center items-center sm:justify-between w-[20rem] px-2 gap-[.4rem] sm:gap-0">
                   <div>
@@ -121,14 +121,14 @@ function LoginPage() {
                 </div>
                 <button
                   type="submit"
-                  className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
+                  className="bg-white  w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
                 >
                   Log In
                 </button>
                 <Link to="/register">
                   <button
                     type="submit"
-                    className="bg-white  w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
+                    className="bg-white  w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
                   >
                     Register
                   </button>

@@ -90,7 +90,7 @@ function Create() {
   console.log(resumeProfiles, "create");
 
   return (
-    <div className="flex flex-col justify-center px-[4rem]">
+    <div className="flex flex-col justify-center sm:px-[4rem]">
       <div className=" flex mx-5 items-center justify-center md:justify-normal">
         <Link to="/new-resume">
           <div className=" border-[3px] border-solid border-slate-600 inline-block px-5 py-4 rounded-xl mt-5 text-black">
@@ -110,13 +110,13 @@ function Create() {
           Delete
         </button>
       )}
-      <div className=" w-[100%] flex flex-wrap flex-col sm:flex-row justify-center items-center  sm:justify-start">
+      <div className=" w-[100%] flex sm:flex-wrap flex-col sm:flex-row justify-center items-center  sm:justify-start">
         {resumeProfiles.length > 0 ? (
           resumeProfiles.map((profile, index) => (
             <>
               <div
                 key={index}
-                className="flex flex-col gap-y-[.3rem] profile p-5 m-5 border-[.2rem] border-slate-400 rounded-lg h-[22rem] w-[19rem] overflow-scroll"
+                className="flex flex-col gap-y-[.3rem] profile p-5 my-[1rem] mx-[1rem] border-[.2rem] border-slate-400 rounded-lg h-[22rem] w-[15rem] xs:w-[19rem] overflow-scroll"
               >
                 <div className="flex justify-end gap-x-[.5rem] items-center  ">
                   <input

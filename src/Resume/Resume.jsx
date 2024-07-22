@@ -58,11 +58,11 @@ function Resume() {
           <div className=" w-[100%] flex flex-col md:flex-row gap-[1.5rem] md:gap-0 items-center justify-between">
             <div className="w-[100%] flex items-center justify-evenly md:justify-start md:gap-[2rem]">
               <div>
-                <h1 className="text-[2.4rem] font-bold">LOGO</h1>
+                <h1 className="sm:text-[2.4rem] text-[1.5rem] xs:text-[2rem] font-bold">LOGO</h1>
               </div>
               <div className="text-left ml-5">
-                <h3 className="font-medium text-xl text-gray-600">Resumes</h3>
-                <p className="font-medium text-xl text-gray-600">
+                <h3 className="font-medium text-[1rem] xs:text-[1.4rem] sm:text-xl text-gray-600">Resumes</h3>
+                <p className="font-medium text-[.9rem] xs:text-[1.4rem] sm:text-xl text-gray-600">
                   Management System
                 </p>
               </div>

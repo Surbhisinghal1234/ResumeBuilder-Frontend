@@ -47,11 +47,11 @@ function Registration() {
     <>
       <div className="bg-img-registration flex items-center justify-center  w-full h-screen ">
         <div
-          className="h-[74%] w-[80%] md:w-[80%] md:h-[80%] sm:w-[65%] sm:h-[75%] lg:w-[70%] xl:w-[60%] bg-white rounded-xl 
+          className="xs:h-[74%] h-[80%] w-[100%] xs:w-[80%] md:w-[80%] md:h-[80%] sm:w-[65%] sm:h-[75%] lg:w-[70%] xl:w-[60%] bg-white rounded xs:rounded-xl 
      flex flex-col md:flex-row text-center overflow-hidden"
         >
           <div className="w-full h-full border-r-2 flex justify-center items-center  border-slate-700 bg-gradient-to-b from-amber-100 to-green-100">
-            <div className="h-[70%] flex flex-col gap-[1.55rem] ">
+            <div className="xs:h-[70%] flex flex-col gap-[1.55rem] ">
               <h1 className="registration font-bold text-black sm:text-2xl text-xl">
               
                 USER REGISTRATION
@@ -69,7 +69,7 @@ function Registration() {
                   onChange={(e) => {
                     handleRegister("name", e.target.value);
                   }}
-                  className="outline-none w-[10rem] xs:w-[15rem]  sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  px-2 py-2 flex items-center rounded  custom-shadow"
+                  className="outline-none w-[13rem] xs:w-[15rem]  sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  px-2 py-2 flex items-center rounded  custom-shadow"
                 />
                 <input
                   type="text"
@@ -78,7 +78,7 @@ function Registration() {
                   onChange={(e) => {
                     handleRegister("email", e.target.value);
                   }}
-                  className="outline-none w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded custom-shadow"
+                  className="outline-none w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded custom-shadow"
                 />
                 {errorMessage && <p className="font-medium text-xl ">{errorMessage}</p>}
                 <input
@@ -88,7 +88,7 @@ function Registration() {
                     handleRegister("password", e.target.value);
                   }}
                   placeholder="Create Password"
-                  className="outline-none w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  px-2 py-2 flex items-center rounded custom-shadow"
+                  className="outline-none w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  px-2 py-2 flex items-center rounded custom-shadow"
                 />
                 <input
                   type="password"
@@ -97,10 +97,10 @@ function Registration() {
                     handleRegister("confirmPassword", e.target.value);
                   }}
                   placeholder="Confirm Password"
-                  className="outline-none w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  px-2 py-2 flex items-center rounded custom-shadow"
+                  className="outline-none w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  px-2 py-2 flex items-center rounded custom-shadow"
                 />
                
-                <button className="text-black bg-gradient-to-r from-emerald-700 to-slate-400 w-[10rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[8px] rounded font-medium custom-shadow transition-colors duration-600 ease-in-out hover:from-orange-500 hover:to-orange-500 hover:text-white">
+                <button className="text-black bg-gradient-to-r from-emerald-700 to-slate-400 w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[8px] rounded font-medium custom-shadow transition-colors duration-600 ease-in-out hover:from-orange-500 hover:to-orange-500 hover:text-white">
                   Register
                 </button>
                

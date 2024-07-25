@@ -14,7 +14,7 @@ async  function CreatePDF (profile) {
 
 if (profile.details.image) {
     const img = new Image();
-    img.src = `http://localhost:8000/${profile.details.image}`;
+    img.src = `https://resumebuilder-backend-ooq9.onrender.com/${profile.details.image}`;
     
     const imgWidth = 30;  
     const imgHeight = 30; 

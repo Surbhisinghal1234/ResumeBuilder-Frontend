@@ -133,7 +133,7 @@ function Edit() {
 
   return (
     <>
-      <div className="resumeSection pb-8 md:pb-0 w-full md:w-1/2 px-[2rem] min-h-[15rem] bg-slate-200 md:bg-transparent border-y-2 border-slate-700 md:border-none">
+      <div className="resumeSection pb-8 md:pb-0 w-full md:w-1/2 sm:px-[2rem] px-[.5rem] min-h-[15rem] bg-slate-200 md:bg-transparent border-y-2 border-slate-700 md:border-none">
         <form
           method="POST"
           onSubmit={handleSubmit}

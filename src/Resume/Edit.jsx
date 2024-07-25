@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, useNavigate, Outlet, useParams} from "react-router-dom";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { inputContext } from "./Main";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Edit() {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const {
@@ -39,6 +40,8 @@ function Edit() {
 
   const [counter, setCounter] = useState(1);
   const [nextPage, setNextPage] = useState(urlObject[counter]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleNextClick = () => {
     setCounter(counter + 1);
@@ -97,6 +100,7 @@ function Edit() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const formData = new FormData();
     const jsonDataSave = JSON.stringify(dataSave);
@@ -118,8 +122,12 @@ function Edit() {
             headers: { "Content-Type": "multipart/form-data" },
           });
       console.log(response.data);
+      setIsSubmitted(true);
+      setIsLoading(false);
+      setTimeout(() => navigate("/create"), 2000);
     } catch (error) {
       console.error("Error:", error);
+      setIsLoading(false);
     }
   };
 
@@ -142,15 +150,23 @@ function Edit() {
             {/* <input type="file" onChange={handleImageChange} /> */}
          {/* <Link to="/create"
          > */}
-          <button
+          {/* <button
               type="submit"
               className="bg-slate-600 hover:bg-slate-900 text-white font-bold px-6 py-[9px] rounded"
             >
               Submit
+            </button> */}
+            <button
+              type="submit"
+              className="bg-slate-600 hover:bg-slate-900 text-white font-bold px-6 py-[9px] rounded"
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading..." : "Submit"}
             </button>
             {/* </Link>    */}
           </div>
         </form>
+        {isSubmitted && <p className="text-green-500 font-bold text-xl ">Submitted successfully!</p>}
         <Outlet />
       </div>
     </>

@@ -68,16 +68,16 @@ function MyDetails() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             type="text"
-            className=" py-[3px] md:py-0 md:border-2 md:border-gray-500 rounded-sm px-5"
+            className=" py-[3px] w-[10rem] md:w-auto md:py-0 md:border-2 md:border-gray-500 rounded-sm px-5"
           />
         </div>
-        <div className="flex gap-[4rem]">
+        <div className="flex  gap-[4rem]">
           <label htmlFor="">Email</label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="text"
-            className=" border-2 border-gray-500 rounded-sm px-5"
+            className=" border-2 w-[10rem] md:w-auto border-gray-500 rounded-sm px-5"
           />
         </div>
         <div className="flex gap-[4.5rem]">

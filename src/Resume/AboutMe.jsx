@@ -64,11 +64,11 @@ function AboutMe() {
         <label className="font-medium text-xl" htmlFor="">
           Pointers
         </label>
-        <div className="flex flex-col gap-4 ml-8">
+        <div className="flex flex-col  gap-4 sm:ml-8">
           {input.map((item, index) => (
             <div key={index} className="">
               <input
-                className="border-gray-400 border-2 rounded px-3 py-1 w-[19rem]"
+                className="border-gray-400 border-2 rounded px-3 py-1 w-[8rem] sm:w-[15rem] md:w-[19rem]"
                 type="text"
                 placeholder="Write bullet points about you"
                 value={item}
@@ -81,7 +81,7 @@ function AboutMe() {
         </div>
         <button
           onClick={handleAdd}
-          className="absolute right-[6.5rem] top-[.2rem]"
+          className="absolute right-[-.5rem] sm:right-[6.5rem] top-[.2rem]"
         >
           <AddCircleOutlineIcon />
         </button>

@@ -104,7 +104,7 @@ function Create() {
 
       {resumeProfiles.length > 0 && (
         <button
-          className="mx-auto md:mx-5 w-[5rem] px-3 py-1 bg-slate-600 rounded text-white mt-5 inline-block"
+          className="mx-auto md:mx-5 w-[5rem] px-3 py-1 bg-slate-500 hover:bg-slate-800 rounded text-white mt-5 inline-block"
           onClick={handleCheckboxDelete}
         >
           Delete
@@ -126,14 +126,14 @@ function Create() {
                     onChange={() => handleCheckbox(profile._id)}
                   />
 
-                  <DeleteIcon
+                  <DeleteIcon 
                     onClick={() => handleDelete(profile._id)}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:bg-red-200"
                   />
                   {/* <Link to={`/new-resume/${profile._id}`}>
                   <EditIcon />
                 </Link> */}
-                  <Link to={`/new-resume/my-details/${profile._id}`}>
+                  <Link className="hover:bg-red-200" to={`/new-resume/my-details/${profile._id}`}>
                     <EditIcon />
                   </Link>
 

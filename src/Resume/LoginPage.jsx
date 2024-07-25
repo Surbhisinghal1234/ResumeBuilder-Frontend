@@ -1,28 +1,14 @@
-import React, { useState, useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./LoginPhe.css";
-import { inputContext } from "./Main";
-
-// import { inputContext } from "./Main";
-// import { useAuth0 } from "@auth0/auth0-react";
 
 function LoginPage() {
   const [loginUser, setLoginUser] = useState({
     email: "",
     password: "",
   });
-  // const {user,loginWithRedirect,isAuthenticated} = useAuth0();
-  // console.log(user,"user")
-  // const { user, setUser } = useContext(inputContext);
-  // const [loginUser, setLoginUser] = useState({
-  //   email: "",
-  //   password: ""
-  // })
-  // const { loginUser, setLoginUser} = useContext(inputContext);
-
-  // const [password, setPassword] = useState("")
-
   const [loginStatus, setLoginStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function handleRegister(key, value) {
     setLoginUser((prevUser) => ({ ...prevUser, [key]: value }));
@@ -35,13 +21,12 @@ function LoginPage() {
       return;
     }
 
+    setLoading(true);
     fetch("https://resumebuilder-backend-ooq9.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      // mode: "no-cors",
-
       body: JSON.stringify({
         email: loginUser.email,
         password: loginUser.password,
@@ -49,17 +34,17 @@ function LoginPage() {
     })
       .then((response) => response.json())
       .then((data) => {
+        setLoading(false);
         if (data.message === "Login successful") {
           setLoginStatus("Login successful!");
-         
           sessionStorage.setItem("userEmail", loginUser.email);
-
           window.location.href = "/create";
         } else {
           setLoginStatus(data.message);
         }
       })
       .catch((error) => {
+        setLoading(false);
         setLoginStatus("Server error");
         console.error("error", error);
       });
@@ -75,7 +60,7 @@ function LoginPage() {
                 WELCOME USER
               </h1>
 
-              <p className="cursor-pointer  w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem]  custom-shadow  bg-white px-2 py-1 flex items-center rounded sm:font-bold text-[.9rem] xs:text-[1rem] font-medium">
+              <p className="cursor-pointer w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] custom-shadow bg-white px-2 py-1 flex items-center rounded sm:font-bold text-[.9rem] xs:text-[1rem] font-medium">
                 <img
                   src="./google.jpeg"
                   className="w-[2rem] h-[2rem] mr-4 xs:mr-10"
@@ -89,7 +74,7 @@ function LoginPage() {
                 <p className="text-black text-sm font-medium px-1">
                   OR LOGIN WITH EMAIL
                 </p>
-                <p className="hidden sm:visible w-[5.1rem] h-[2px] bg-white "></p>
+                <p className="hidden sm:visible w-[5.1rem] h-[2px] bg-white"></p>
               </div>
               <form
                 onSubmit={handleLogin}
@@ -102,7 +87,7 @@ function LoginPage() {
                   onChange={(e) => {
                     handleRegister("email", e.target.value);
                   }}
-                  className="outline-none custom-shadow  w-[13rem] xs:w-[15rem]  sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
+                  className="outline-none custom-shadow w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
                 />
                 <input
                   type="password"
@@ -111,7 +96,7 @@ function LoginPage() {
                     handleRegister("password", e.target.value);
                   }}
                   placeholder="Password"
-                  className="outline-none custom-shadow  w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
+                  className="outline-none custom-shadow w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] px-2 py-2 flex items-center rounded"
                 />
                 <div className="flex flex-col sm:flex-row justify-center items-center sm:justify-between w-[20rem] px-2 gap-[.4rem] sm:gap-0">
                   <div>
@@ -119,16 +104,26 @@ function LoginPage() {
                   </div>
                   <p>Forgot password</p>
                 </div>
-                <button
+                {/* <button
                   type="submit"
-                  className="bg-white  w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
+                  className="bg-white w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
+                  disabled={loading}
                 >
-                  Log In
+                  {loading ? "Loading..." : "Log In"}
+                </button> */}
+                 <button
+                  type="submit"
+                  className={`bg-white w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium ${
+                    loading ? "" : "hover:bg-gray-500"
+                  }`}
+                  disabled={loading}
+                >
+                  {loading ? "Loading..." : "Log In"}
                 </button>
                 <Link to="/register">
                   <button
-                    type="submit"
-                    className="bg-white  w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
+                    type="button"
+                    className="bg-white w-[13rem] xs:w-[15rem] sm:w-[20rem] md:w-[16rem] lg:w-[20rem] py-[6px] rounded font-medium"
                   >
                     Register
                   </button>
@@ -161,3 +156,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
+

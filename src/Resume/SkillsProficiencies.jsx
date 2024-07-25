@@ -51,7 +51,7 @@ function SkillsProficiencies() {
               />
             </div>
           ))}
-          <button onClick={handleAddSkills} className='outline-none absolute top-[4rem] right-[3rem]'>
+          <button onClick={handleAddSkills} className='outline-none absolute top-[4rem] right-[-1rem] md:right-[3rem]'>
             <AddCircleOutlineIcon />
           </button>
         </div>

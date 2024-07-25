@@ -88,10 +88,9 @@ function Resume() {
               
                   Email: <span className="font-normal">{user.email}</span>
                 </p>
-                {/* <p className="font-medium"> Password: <span className="font-normal">{user.password}</span></p> */}
               </div>
                 <div>
-                <button onClick={handleLogout} className="bg-red-600 rounded-md px-4 py-2 text-white ">Logout</button>
+                <button onClick={handleLogout} className="bg-red-500 hover:bg-red-700  rounded-md px-4 py-2 text-white ">Logout</button>
               </div>
               </>
 

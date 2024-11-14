@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { inputContext } from "./Main";
+import { inputContext } from "../context/Main";
 
 function ResumeProfile() {
   const {
@@ -64,7 +64,7 @@ function ResumeProfile() {
   // }
   return (
     <>
-      {/* <div method="post"> */}
+   
       <div className="border-l border-gray-400 "></div>
 
       <div className="w-full md:w-1/2 px-[2rem]">

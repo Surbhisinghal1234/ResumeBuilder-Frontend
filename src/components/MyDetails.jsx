@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import PersonIcon from "@mui/icons-material/Person";
-import { inputContext } from "./Main";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
+import { inputContext } from "../context/Main";
 
 function MyDetails() {
   const { id } = useParams();
@@ -19,8 +19,7 @@ function MyDetails() {
     image,
     setImage,
   } = useContext(inputContext);
-  // const [image, setImage] = useState("");
-  //   const [editable, setEditable] = useState(true)
+
   const [photo, setphoto] = useState(null);
 
  
@@ -40,13 +39,8 @@ function MyDetails() {
  
   return (
     <>
-      {/* <div className=" rounded-full bg-slate-300 h-[8rem] w-[8rem] flex items-center justify-center mt-[6rem]">
-          <PersonIcon sx={{fontSize:"4rem"}}  />
-      </div> */}
-
-      {/* <div className="mt-[2rem] mb-5"> */}
+     
       <div className="flex gap-[1.3rem] flex-col">
-        {/* <h2 className="font-bold text-2xl mb-5">Upload Photo</h2> */}
 
         <div className="flex gap-[2rem]">
           <label htmlFor="">Upload Photo</label>

@@ -1,6 +1,8 @@
 import jsPDF from "jspdf";
 
 async  function CreatePDF (profile) {
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const doc = new jsPDF();
   const margin = 10;
   let verticle = margin;
@@ -14,7 +16,7 @@ async  function CreatePDF (profile) {
 
 if (profile.details.image) {
     const img = new Image();
-    img.src = `https://resumebuilder-backend-ooq9.onrender.com/${profile.details.image}`;
+    img.src = `${API_URL}/${profile.details.image}`;
     
     const imgWidth = 30;  
     const imgHeight = 30; 

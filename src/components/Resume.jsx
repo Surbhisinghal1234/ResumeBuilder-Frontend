@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { inputContext } from "./Main";
+import { inputContext } from "../context/Main";
+
 
 function Resume() {
   const [userData, setUserData] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const { email, setEmail } = useContext(inputContext);
-  
+  const API_URL = import.meta.env.VITE_API_URL;
+ 
   useEffect(() => {
     const userEmail = sessionStorage.getItem("userEmail");
 
@@ -14,7 +16,7 @@ function Resume() {
       const fetchUserDetails = async () => {
         try {
           const response = await axios.get(
-            `https://resumebuilder-backend-ooq9.onrender.com/userData?email=${userEmail}`
+            `${API_URL}/userData?email=${userEmail}`
           );
          
           setUserData(response.data);
@@ -35,13 +37,10 @@ function Resume() {
 
   },[])
 
-  // function handleLogout(){
-  //   sessionStorage.clear("userEmail")
-  //   window.location.href = "/"
-  // }
+
   async function handleLogout() {
     try {
-      await axios.post("https://resumebuilder-backend-ooq9.onrender.com/logout");
+      await axios.post(`${API_URL}/logout`);
       sessionStorage.clear("userEmail");
       window.location.href = "/";
     } catch (error) {
@@ -50,7 +49,6 @@ function Resume() {
   }
 
 
-// console.log(resumeProfile,"resumeProfile")
   return (
     <>
       <div className="border-b-2 border-gray-400 ">
@@ -69,13 +67,13 @@ function Resume() {
             </div>
             <div className="w-[100%] flex flex-col gap-y-[1rem] sm:gap-y-0 sm:flex-row items-center justify-evenly md:justify-end md:gap-x-[2rem]">
 
-            <div>
+            {/* <div>
               <input
                 type="text"
                 placeholder="Search"
                 className="border-solid w-[16rem] border-gray-400 border-2 rounded-full px-3 py-2 outline-none"
               />
-            </div>
+            </div> */}
 
             {user ? (
               <>

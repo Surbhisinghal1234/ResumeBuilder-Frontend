@@ -1,10 +1,11 @@
-import React, { useContext,useState,useEffect  } from "react";
+import React, { useContext } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import InfoIcon from "@mui/icons-material/Info";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { inputContext } from "./Main";
+
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
+import { inputContext } from "../context/Main";
 
 function WorkExperiences() {
   const { id } = useParams();
@@ -47,7 +48,7 @@ function WorkExperiences() {
   };
   const addBusinessSolutionInput = (index) => {
     const updatedWorkExperience = [...workExperience];
-    updatedWorkExperience[index].technologyStack.push(""); 
+    updatedWorkExperience[index].technologyStack.push("");
     setWorkExperience(updatedWorkExperience);
   };
   const addProjectInput = (index) => {
@@ -55,7 +56,7 @@ function WorkExperiences() {
     updatedWorkExperience[index].projectResponsibility.push("");
     setWorkExperience(updatedWorkExperience);
   };
-  
+
   return (
     <div className="mx-4">
       <h3 className="mt-[1rem] mb-[2rem] font-bold text-2xl flex items-center justify-center gap-2">

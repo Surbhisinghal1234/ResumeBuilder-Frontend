@@ -1,13 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, Outlet, useParams} from "react-router-dom";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import { inputContext } from "./Main";
-// import { useParams } from "react-router-dom";
+
 import axios from "axios";
+import { inputContext } from "../context/Main";
 
 function Edit() {
   const navigate = useNavigate();
   const { id } = useParams();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const {
     email,
@@ -21,7 +22,7 @@ function Edit() {
     message,
     setMessage,
     image,
-    setImage,
+    
     input,
     setInput,
     workExperience,
@@ -74,7 +75,7 @@ function Edit() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://resumebuilder-backend-ooq9.onrender.com/getById/${id}`);
+        const response = await axios.get(`${API_URL}/getById/${id}`);
         const { resumeData } = response.data;
         const { details, AboutMe, SkillsProficiencies, workExperience } =
           resumeData;
@@ -115,10 +116,10 @@ function Edit() {
 
     try {
       const response = id
-        ? await axios.put(`https://resumebuilder-backend-ooq9.onrender.com/${id}`, formData, {
+        ? await axios.put(`${API_URL}/${id}`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
           })
-        : await axios.post("https://resumebuilder-backend-ooq9.onrender.com/send", formData, {
+        : await axios.post(`${API_URL}/send`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
       console.log(response.data);

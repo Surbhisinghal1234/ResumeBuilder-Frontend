@@ -1,8 +1,8 @@
 import React from "react";
-import Builder from "./Builder";
-// import { Edit } from '@mui/icons-material'
-import Edit from "./Edit";
-import ResumeProfile from "./ResumeProfile";
+import Builder from "../../components/Builder";
+
+import Edit from "../../components/Edit";
+import ResumeProfile from "../../components/ResumeProfile";
 import { Outlet } from "react-router-dom";
 
 function NewResume() {

@@ -1,8 +1,9 @@
 import React, { useContext, useState,useEffect } from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { inputContext } from './Main';
+
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
+import { inputContext } from '../context/Main';
 
 function SkillsProficiencies() {
   const { id } = useParams();

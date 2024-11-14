@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
-import "./LoginPhe.css";
-import { NavLink } from "react-router-dom";
-import { inputContext } from "./Main";
-import './css/registration.css';
+import "./registration.css"
+import { inputContext } from "../../context/Main";
+
 
 function Registration() {
   const { user, setUser } = useContext(inputContext);
   const [registrationMessage, setRegistrationMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   function handleRegister(key, value) {
     setUser((prevUser) => ({ ...prevUser, [key]: value }));
@@ -22,7 +23,7 @@ function Registration() {
       return;
     }
   
-    fetch("https://resumebuilder-backend-ooq9.onrender.com/register", {
+    fetch(`${API_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),

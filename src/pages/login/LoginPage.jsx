@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./LoginPhe.css";
+import "./LoginPhe.css"
 
 function LoginPage() {
   const [loginUser, setLoginUser] = useState({
@@ -9,6 +9,8 @@ function LoginPage() {
   });
   const [loginStatus, setLoginStatus] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   function handleRegister(key, value) {
     setLoginUser((prevUser) => ({ ...prevUser, [key]: value }));
@@ -22,7 +24,7 @@ function LoginPage() {
     }
 
     setLoading(true);
-    fetch("https://resumebuilder-backend-ooq9.onrender.com/login", {
+    fetch(`${API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

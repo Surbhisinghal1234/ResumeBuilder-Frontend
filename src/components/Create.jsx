@@ -1,16 +1,18 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./css/create.css";
+
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { Link } from "react-router-dom";
-import { inputContext } from "./Main";
+
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import WorkExperiences from "./WorkExperiences";
-import CreatePDF from "./CreatePDF";
-// import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+
+
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import { inputContext } from "../context/Main";
+import "./create.css"
+import CreatePDF from "../pdf/CreatePDF";
 
 function Create() {
   const { id } = useParams();
@@ -19,6 +21,7 @@ function Create() {
   const [resumeProfiles, setResumeProfiles] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
 
+  const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -30,7 +33,7 @@ function Create() {
           return;
         }
         const response = await axios.get(
-          `https://resumebuilder-backend-ooq9.onrender.com/userData?email=${userEmail}`
+          `${API_URL}/userData?email=${userEmail}`
         );
         const { user, resumeProfiles } = response.data;
         console.log(response, "35 create");
@@ -51,7 +54,7 @@ function Create() {
   const handleDelete = async (id) => {
     console.log("id:", id);
     try {
-      await axios.delete(`https://resumebuilder-backend-ooq9.onrender.com/delete/${id}`);
+      await axios.delete(`${API_URL}/delete/${id}`);
       setResumeProfiles((prevProfiles) =>
         prevProfiles.filter((profile) => profile._id !== id)
       );
@@ -62,7 +65,7 @@ function Create() {
 
   const handleCheckboxDelete = async () => {
     try {
-      await axios.delete(`https://resumebuilder-backend-ooq9.onrender.com/deleteMany`, {
+      await axios.delete(`${API_URL}/deleteMany`, {
         data: { ids: selectedItems },
       });
       setResumeProfiles((prevProfiles) =>
@@ -83,9 +86,8 @@ function Create() {
       }
     });
   };
-  // const { user, resumeProfiles } = response.data;
+ 
 
-  // let images = resumeProfiles.map(item => item.details.image);
 
   console.log(resumeProfiles, "create");
 
@@ -130,9 +132,7 @@ function Create() {
                     onClick={() => handleDelete(profile._id)}
                     className="cursor-pointer hover:bg-red-200"
                   />
-                  {/* <Link to={`/new-resume/${profile._id}`}>
-                  <EditIcon />
-                </Link> */}
+                
                   <Link className="hover:bg-red-200" to={`/new-resume/my-details/${profile._id}`}>
                     <EditIcon />
                   </Link>
@@ -151,7 +151,7 @@ function Create() {
                   Image:
                   <img class="h-[4rem] w-[6rem] rounded-md"
 
-                    src={`https://resumebuilder-backend-ooq9.onrender.com/${profile.details.image}`}
+                    src={`${API_URL}/${profile.details.image}`}
                     alt="Profile"
                   />
                 </p>

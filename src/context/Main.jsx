@@ -1,21 +1,17 @@
 import React, { createContext, useState, useContext } from "react";
-import Resume from "./Resume";
-import Create from "./Create";
-import Builder from "./Builder";
-import NewResume from "./NewResume";
-import Edit from "./Edit";
-import SelectSection from "./SelectSection";
-import MyDetails from "./MyDetails";
-import AboutMe from "./AboutMe";
-import SkillsProficiencies from "./SkillsProficiencies";
-import WorkExperiences from "./WorkExperiences";
+import Resume from "../components/Resume";
+import Create from "../components/Create";
+import SelectSection from "../components/SelectSection";
+import MyDetails from "../components/MyDetails";
+import AboutMe from "../components/AboutMe";
+import SkillsProficiencies from "../components/SkillsProficiencies";
+import WorkExperiences from "../components/WorkExperiences";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import "./resume.css";
-import LoginPage from "./LoginPage";
-import Registration  from "./Registration"
-export const inputContext = createContext();
-// import "./LoginPage.css";
+import LoginPage from "../pages/login/LoginPage";
+import Registration  from "../pages/register/Registration"
+import NewResume from "../pages/home/NewResume";
 
+export const inputContext = createContext();
 
 function Main() {
   const [email,setEmail]=useState("")
@@ -50,7 +46,7 @@ function Main() {
     email:"",
     password:""
   })
-  // console.log(compareLoginUser, "main");
+ 
 
   const router = createBrowserRouter([
     {
@@ -121,10 +117,7 @@ function Main() {
         },
       ],
     },
-    // {
-    //   path: "*",
-    //   element: "page not found",
-    // },
+  
   ]);
   return (
     <>
